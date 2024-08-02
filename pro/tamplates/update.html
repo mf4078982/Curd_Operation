@@ -1,0 +1,18 @@
+{% extends "index1.html" %}
+{% block text %}
+<div class="div row">
+    <div class="div col-sm-6">
+        <h1 class="alert alert-success"><b><i>Update Student</i></b></h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update" class="btn btn-dark">
+            <a href="{% url 'add' %}" class="btn btn-info">Back to home</a>
+        </form>
+
+    </div>
+</div>
+
+
+
+{% endblock text %}

@@ -1,0 +1,50 @@
+{% extends "index1.html" %}
+{% block text %}
+<div class="div row">
+    <div class="div col-sm-5">
+        <h1 class="alert alert-dark text-center"><i><b>Add Student</b></i></h1>
+       <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Add" class="btn btn-dark">
+       </form>
+    </div>
+    <div class="div col-sm-6">
+        <h1 class="alert alert-dark text-center"><i><b>Show Student</b></i></h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in stud %}
+              <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.password}}</td>
+                <td>
+                  <form action="{% url 'delete' i.id %}" method="POST">
+                      {% csrf_token %}
+                    <input type="submit" value="Delete" class="btn btn-dark">
+                    <a href="{% url 'update' i.id %}" class="btn btn-dark">Edit</a>
+                  
+
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    
+</div>
+
+
+
+{% endblock text %}
